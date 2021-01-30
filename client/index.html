@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Push noti</title>
+</head>
+<body>
+    <img id="bg" src="nature_bg.jpg"/>
+    <form  id="send-push__form">
+        <div id="left" class="p-3">
+            <h3 class="header text-center" >Send a push notification</h3>
+            <p class="error"></p>
+            <button  class="btn btn-light" class="text-center" id="sendingBtn">Send Me</button>
+        </div>
+        <div>
+            <div class="form-group">
+                <label for="time">Total time</label>
+                <div class="line">
+                    <input class="form-control" type="number" value="10" id="example-number-input">
+                    <select class="form-control form-control-md ml-2">
+                        <option>Second</option>
+                        <option>Hours</option>
+                        <option>Minute</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="time">Reapeat time</label>
+                <div class="line">
+                    <input class="form-control" type="number" value="5" id="example-number-input">
+                    <select class="form-control form-control-md ml-2">
+                        <option>Second</option>
+                        <option>Hours</option>
+                        <option>Minute</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Message</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" p[laceholder="Message right herer"></textarea>
+            </div>
+        </div>
+       
+    </form>
+
+    <button id="stop_push" class="btn btn-light stop" class="text-center" >Stop</button>
+
+    
+    <script src="client.js"></script>
+</body>
+</html>
