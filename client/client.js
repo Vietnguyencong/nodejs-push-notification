@@ -55,8 +55,7 @@ if ('serviceWorker' in navigator){
         }
         
         console.log(data)
-        console.log("starting the interval")
-            send(data)
+        send(data)
         
 
         
@@ -78,7 +77,6 @@ async function send(data){
         applicationServerKey: convertedVapidKey, 
     })
     console.log("push registered")
-    console.log("data:" , data)
 
     var subscription  = {
         'data': data, 
@@ -94,7 +92,6 @@ async function send(data){
         document.getElementById("sendingBtn").innerHTML = "Send Me"
         console.log("stopping the push")
     })
-   
 }
 const sendNoti = async(subscription) => {
     await fetch('/subscribe',{

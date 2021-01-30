@@ -51,7 +51,6 @@ let timeId ;
 
 self.addEventListener("push", e => {
     const data = e.data.json();
-    console.log("sending the push")
     console.log("data",  data)
     if (data.sending == true){
         timeId = setInterval(() =>{
@@ -67,7 +66,6 @@ self.addEventListener("push", e => {
             send_notification("This is your last reminder")
         }, data.time);
         console.log("sent the push ");
-
     }
     else if (data.sending == false){
         clearInterval(timeId)
@@ -75,7 +73,7 @@ self.addEventListener("push", e => {
         console.log("stoped the push")
 
     }
-  
+    console.log("------------------------")
 })
 
    
