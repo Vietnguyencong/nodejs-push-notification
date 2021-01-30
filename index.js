@@ -50,6 +50,7 @@ app.post('/subscribe',  (req,res)=>{
         .catch(err=>console.error(err))
 })
 
-
-const port = 5000 
+// for development 
+const port = process.env.PORT || 5000 
 app.listen(port, () => console.log("server run port 5000"))
+// for production 
