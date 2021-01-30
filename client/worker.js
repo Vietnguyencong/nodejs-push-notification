@@ -56,7 +56,7 @@ self.addEventListener("push", e => {
         timeId = setInterval(() =>{
             if (data.message == ""){
                 send_notification("Hello, how are you today? ")
-            console.log("sent the push ");
+            console.log("sent default push ");
 
             }else{
                 send_notification(data.message)
@@ -70,7 +70,11 @@ self.addEventListener("push", e => {
         }, data.time);
     }
     else if (data.sending == false){
-        clearInterval(timeId)
+        console.log("time id", timeId)
+        if (timeId){
+            
+            clearInterval(timeId)
+        }
         send_notification("Manually stop the Notification!!")
         console.log("stoped the push")
 

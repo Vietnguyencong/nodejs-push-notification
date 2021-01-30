@@ -82,14 +82,26 @@ async function send(data){
         'data': data, 
         'sub':sub, 
     }
+    
+    var sendingBtn = document.getElementById("sendingBtn")
+    const stopBtn = document.getElementById("stop_push")
+
+    sendingBtn.disabled = true
+    sendingBtn.innerHTML = "Sending the push to your computer ... Click 'stop' to STOP Disabled"
+    stopBtn.innerHTML = "Stop"
+    stopBtn.disabled = false
+
     sendNoti(subscription)
-    document.getElementById("sendingBtn").innerHTML = "Sending the push to your computer ... Click 'stop' to STOP"
-    const stop_btn = document.getElementById("stop_push")
-    stop_btn.addEventListener("click", ()=>{
+
+    stopBtn.addEventListener("click", ()=>{
+        sendingBtn.innerHTML = "Send Me"
+        sendingBtn.disabled = false
+        stopBtn.disabled = true
+        stopBtn.innerHTML = "Stop Disabled"
         data['sending'] = false
         subscription['data'] = data
         sendNoti(subscription)
-        document.getElementById("sendingBtn").innerHTML = "Send Me"
+        
         console.log("stopping the push")
     })
 }
