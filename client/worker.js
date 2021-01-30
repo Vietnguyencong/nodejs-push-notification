@@ -56,8 +56,11 @@ self.addEventListener("push", e => {
         timeId = setInterval(() =>{
             if (data.message == ""){
                 send_notification("Hello, how are you today? ")
+            console.log("sent the push ");
+
             }else{
                 send_notification(data.message)
+        console.log("sent LAST push ");
             }
         }, data.interval);
     
@@ -65,7 +68,6 @@ self.addEventListener("push", e => {
             clearInterval(timeId)
             send_notification("This is your last reminder")
         }, data.time);
-        console.log("sent the push ");
     }
     else if (data.sending == false){
         clearInterval(timeId)
