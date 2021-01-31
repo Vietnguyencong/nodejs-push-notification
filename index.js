@@ -38,11 +38,19 @@ app.get("/", (req,res, next)=>{
     // let status
     if (!req.session.status){
         req.session.status = "stopping"
+        data = {
+            'time':2,
+            'interval': 30,
+            'message': "Time to get some water",
+            'time_unit':  "Hours",
+            'interval_unit': "Minute", 
+        }
+        req.session.data = data
     }
     else{
         status = req.session.status
     }
-    res.render('index',{ status: req.session.status })
+    res.render('index',{ status: req.session.status, data: req.session.data })
 })
 
 app.get("/getimage", async (req,res)=>{

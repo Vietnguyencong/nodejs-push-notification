@@ -23,28 +23,52 @@
             <div class="form-group">
                 <label for="time">Total time</label>
                 <div class="line">
-                    <input class="form-control" type="number" value="10" id="example-number-input">
+                    <input class="form-control" type="number" value="<%=data.time%>" id="example-number-input">
                     <select class="form-control form-control-md ml-2">
-                        <option>Second</option>
-                        <option>Hours</option>
-                        <option>Minute</option>
+                        <option
+                        <%if(data.time_unit == "Second"){  %>
+                            selected
+                        <%}%>
+                        >Second</option>
+                        <option
+                        <%if(data.time_unit == "Hours"){  %>
+                            selected
+                        <%}%>
+                        >Hours</option>
+                        <option
+                        <%if(data.time_unit == "Minute"){  %>
+                            selected
+                        <%}%>
+                        >Minute</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="time">Reapeat time</label>
                 <div class="line">
-                    <input class="form-control" type="number" value="5" id="example-number-input">
+                    <input class="form-control" type="number" value="<%=data.interval%>" id="example-number-input">
                     <select class="form-control form-control-md ml-2">
-                        <option>Second</option>
-                        <option>Hours</option>
-                        <option>Minute</option>
+                        <option
+                        <%if(data.interval_unit == "Second"){  %>
+                            selected
+                        <%}%>
+                        >Second</option>
+                        <option
+                        <%if(data.interval_unit == "Hours"){  %>
+                            selected
+                        <%}%>
+                        >Hours</option>
+                        <option
+                        <%if(data.interval_unit == "Minute"){  %>
+                            selected
+                        <%}%>
+                        >Minute</option>
                     </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" p[laceholder="Message right herer"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message right herer"><%=data.message%></textarea>
             </div>
         </div>
        
