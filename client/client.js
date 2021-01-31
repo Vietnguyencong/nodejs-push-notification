@@ -101,7 +101,7 @@ const get_user_input = (status) =>{
         interval = interval*60*60*1000
     }
     else if (interval_unit == "Minute") {
-        internval = internval**60*1000
+        interval = interval**60*1000
     }
     else {
         interval = interval * 1000
