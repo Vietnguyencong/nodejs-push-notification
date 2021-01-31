@@ -74,9 +74,9 @@ app.post('/subscribe',  (req,res)=>{
     // resource is created 
     const sub = subscription['sub']
     const data = subscription['data']
- 
+    const session_data = subscription['session_data']
     req.session.status = data.status
-    req.session.data = data
+    req.session.data = session_data
     res.status(201).json({})
     const payload = JSON.stringify(data)
     webPush

@@ -33,11 +33,12 @@ const send = async()=>{
 
         pushForm.addEventListener("submit",async(event)=>{
             event.preventDefault()
-            const data = get_user_input('sending'); 
+            const {data,session_data} = get_user_input('sending'); 
             console.log(data)
             var subscription  = {
                 'data': data, 
                 'sub':sub, 
+                'session_data':session_data
             }
             console.log(data)
             // set the sending button disabel
@@ -52,11 +53,12 @@ const send = async()=>{
 
         })
         stopBtn.addEventListener("click", ()=>{
-            const data = get_user_input('stopping')
+            const {data,session_data} = get_user_input('stopping')
             data['sending'] = false
             var subscription  = {
                 'data': data, 
                 'sub':sub, 
+                'session_data': session_data
             }
             console.log(data)
              // set the sending button disabel
@@ -80,6 +82,13 @@ const get_user_input = (status) =>{
     var interval = parseInt(pushForm.elements[3].value)
     const interval_unit = pushForm.elements[4].value
     const message = pushForm.elements[5].value
+    const session_data = {
+        'time':time,
+        'interval': (interval),
+        'message': message,
+        'time_unit':  time_unit,
+        'interval_unit': interval_unit
+    }
     if (time_unit == "Hours"){
         time = time*60*60*1000
     }
@@ -112,7 +121,10 @@ const get_user_input = (status) =>{
         alert("Invalid input")
         return; 
     }
-    return data
+    return {
+        data: data, 
+        session_data: session_data
+    }
 }
 const sendNoti = async(subscription) => {
     await fetch('/subscribe',{
