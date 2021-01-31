@@ -63,16 +63,17 @@ self.addEventListener("push", e => {
         console.log("sent LAST push ");
             }
         }, data.interval);
-    
+        console.log("time id", timeId)
+        
         setTimeout(() => {
+            console.log
             clearInterval(timeId)
-            send_notification("This is your last reminder")
+            // send_notification("This is your last reminder")
         }, data.time);
     }
     else if (data.sending == false){
         console.log("time id", timeId)
         if (timeId){
-            
             clearInterval(timeId)
         }
         send_notification("Manually stop the Notification!!")

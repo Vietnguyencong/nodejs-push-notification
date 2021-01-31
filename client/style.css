@@ -47,3 +47,10 @@ html, body{
     position: absolute; 
 
 }
+
+.form-group{
+    opacity: 0.8;
+}
+.form-group:hover{
+    opacity: 1;
+}

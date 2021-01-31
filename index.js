@@ -4,23 +4,48 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express()
 const fetch = require('node-fetch');
+const session = require("express-session");
+const { render } = require('ejs');
 require('dotenv').config()
 
 app.use(bodyParser.json())
 
 // set Static path 
-app.use(express.static(path.join(__dirname, "client")))
+app.use('/client', express.static(path.join(__dirname, "client")))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.set("trust proxy",1) // trust proxy one 
+app.use(session({
+    secret:"secret-key",
+    resave:false, 
+    saveUninitialized:false,
+    // cookie:{secure:false}
+}))
+
+if(app.get('env') === 'production'){
+    app.set('trust proxy',1)
+    session.cookie.secure = true
+}
 
 webPush.setVapidDetails(
     'mailto:test@test.com',
     process.env.public_key,
     process.env.private_key, 
 )
-
+// HOME PAGE
+app.get("/", (req,res, next)=>{
+    // console.log("sesssion:", req.session)
+    let status
+    if (!req.session.status){
+        status = "stopping"
+    }
+    else{
+        status = req.session.status
+    }
+    res.render('index',{ status: status })
+})
 
 app.get("/getimage", async (req,res)=>{
-
-
     const url = 'https://api.unsplash.com/search/photos?'
     const query = "vietnam"
     const viet = await fetch(url + `query=${query}`,{
@@ -32,6 +57,11 @@ app.get("/getimage", async (req,res)=>{
     const json = await viet.json()
     res.json(json)    
 })
+// app.get("/test",(req,res, next)=>{
+//     req.session.viewCount += 1
+//     req.session.testing += 1
+//     res.render('test', {viewCount: req.session.viewCount})
+// })
 
 // send the subcribe route 
 app.post('/subscribe',  (req,res)=>{
@@ -40,14 +70,16 @@ app.post('/subscribe',  (req,res)=>{
     // resource is created 
     const sub = subscription['sub']
     const data = subscription['data']
+ 
+    req.session.status = data.status
     res.status(201).json({})
-    
     const payload = JSON.stringify(data)
-
-    // pass object into sendNotification function
     webPush
         .sendNotification(sub, payload)
         .catch(err=>console.error(err))
+
+    // res.render('index', {status: "sending"})
+    // res.redirect("/")
 })
 
 // for development 
