@@ -38,6 +38,8 @@ const send = async()=>{
                 'sub':sub, 
             }
             console.log(data)
+            event.waituntil
+            location.reload()
             sendNoti(subscription)  
             location.reload()
 

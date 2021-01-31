@@ -35,14 +35,14 @@ webPush.setVapidDetails(
 // HOME PAGE
 app.get("/", (req,res, next)=>{
     // console.log("sesssion:", req.session)
-    let status
+    // let status
     if (!req.session.status){
-        status = "stopping"
+        req.session.status = "stopping"
     }
     else{
         status = req.session.status
     }
-    res.render('index',{ status: status })
+    res.render('index',{ status: req.session.status })
 })
 
 app.get("/getimage", async (req,res)=>{
