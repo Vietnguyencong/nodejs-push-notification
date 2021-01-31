@@ -57,11 +57,7 @@ app.get("/getimage", async (req,res)=>{
     const json = await viet.json()
     res.json(json)    
 })
-// app.get("/test",(req,res, next)=>{
-//     req.session.viewCount += 1
-//     req.session.testing += 1
-//     res.render('test', {viewCount: req.session.viewCount})
-// })
+
 
 // send the subcribe route 
 app.post('/subscribe',  (req,res)=>{
@@ -72,17 +68,15 @@ app.post('/subscribe',  (req,res)=>{
     const data = subscription['data']
  
     req.session.status = data.status
+    req.session.data = data
     res.status(201).json({})
     const payload = JSON.stringify(data)
     webPush
         .sendNotification(sub, payload)
         .catch(err=>console.error(err))
 
-    // res.render('index', {status: "sending"})
-    // res.redirect("/")
 })
 
-// for development 
 const port = process.env.PORT || 5000 
 app.listen(port, () => console.log("server run port 5000"))
 // for production 

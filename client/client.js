@@ -28,6 +28,8 @@ const send = async()=>{
         })
         console.log("push registered")
 
+        const stopBtn = document.getElementById("stop_push")
+        const sendingBtn = document.getElementById("sendingBtn") 
 
         pushForm.addEventListener("submit",async(event)=>{
             event.preventDefault()
@@ -38,14 +40,17 @@ const send = async()=>{
                 'sub':sub, 
             }
             console.log(data)
-            event.waituntil
-            location.reload()
+            // set the sending button disabel
+            sendingBtn.disabled = true
+            sendingBtn.innerHTML = "Sending the push ... Click stop to stop"
+            // set the stopping btn undisable
+            stopBtn.disabled = false
+            stopBtn.innerHTML = "Stop"
+            document.get
             sendNoti(subscription)  
-            location.reload()
+            // location.reload()
 
-            // refreshpage()
         })
-        const stopBtn = document.getElementById("stop_push")
         stopBtn.addEventListener("click", ()=>{
             const data = get_user_input('stopping')
             data['sending'] = false
@@ -54,12 +59,15 @@ const send = async()=>{
                 'sub':sub, 
             }
             console.log(data)
+             // set the sending button disabel
+            sendingBtn.disabled = false
+            sendingBtn.innerHTML = "Send Me"
+            // set the stopping btn undisable
+            stopBtn.disabled = true
+            stopBtn.innerHTML = "Stop Disabled"
             sendNoti(subscription)
             console.log("stopping the push")
-            // refreshpage()
-            location.reload()
-
-
+            // location.reload()
         })
     }
 }
