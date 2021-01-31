@@ -24,7 +24,7 @@ app.use(session({
 
 if(app.get('env') === 'production'){
     app.set('trust proxy',1)
-    session.cookie.secure = true
+    // session.cookie.securgite = true
 }
 
 webPush.setVapidDetails(
