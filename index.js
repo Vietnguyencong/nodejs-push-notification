@@ -11,9 +11,10 @@ require('dotenv').config()
 app.use(bodyParser.json())
 
 // set Static path 
-app.use('/client', express.static(path.join(__dirname, "client")))
+app.use('/', express.static(path.join(__dirname, "client")))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+
 app.set("trust proxy",1) // trust proxy one 
 app.use(session({
     secret:"secret-key",

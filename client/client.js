@@ -14,10 +14,10 @@ const pushForm = document.getElementById("send-push__form")
 const send = async()=>{
     if ('serviceWorker' in navigator){
         // add onlick function for sending the puhs 
-        console.log("register the service worker")
-        const resgister = await navigator.serviceWorker.register('/worker.js', {
-            scope:'/'
+        const resgister = await navigator.serviceWorker.register('/worker.js',{
+            scope:"/"
         })
+        console.log("register:", resgister)
         console.log('Service worker registered ')
         const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
         
