@@ -11,7 +11,7 @@ const pushForm = document.getElementById("send-push__form")
 // call_api()
 
 
-const send = async()=>{
+window.onload =  async (event)=>{
     if ('serviceWorker' in navigator){
         // add onlick function for sending the puhs 
         const resgister = await navigator.serviceWorker.register('/worker.js',{
@@ -22,11 +22,20 @@ const send = async()=>{
         const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
         
         // register the worker to  the push 
-        const sub = await resgister.pushManager.subscribe({
-            userVisibleOnly: true, 
-            applicationServerKey: convertedVapidKey, 
-        })
-        console.log("push registered")
+        let sub
+        try{
+            sub = await resgister.pushManager.subscribe({
+                userVisibleOnly: true, 
+                applicationServerKey: convertedVapidKey, 
+            })
+        
+            console.log("push registered")
+        }
+
+        catch{
+            window.location.reload(true)
+        }
+      
 
         const stopBtn = document.getElementById("stop_push")
         const sendingBtn = document.getElementById("sendingBtn") 
@@ -74,7 +83,6 @@ const send = async()=>{
     }
 }
 
-send()
 
 const get_user_input = (status) =>{
     var time = parseInt(pushForm.elements[1].value)
